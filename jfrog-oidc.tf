@@ -7,10 +7,18 @@ module "jfrog-oidc" {
   source = "./modules"
   mappings = {
     "jfrog-oidc-local" = {
-      username = "Moturibabu"
+      username = "test-user"
       claims = {
-        repository_owner = "Moturibabu"
+        repository_owner = "jfrog-oidc-local"
       }
+    },
+  
+      "oidc-test-jfrog = {
+          username = "ttd-svc-gha-user"
+          claims = {
+           repository_owner = "oidc-test-jfrog"
+           }
     }
+
   }
 }
