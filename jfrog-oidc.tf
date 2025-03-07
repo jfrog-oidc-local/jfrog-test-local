@@ -9,7 +9,7 @@ module "jfrog-oidc" {
     "jfrog-oidc-local" = {
       username = "test-user"
       claims = {
-        woekflow = "test-oidc"
+        workflow = "test-oidc"
       }
     },
   
