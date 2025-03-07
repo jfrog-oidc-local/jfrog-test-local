@@ -20,7 +20,7 @@ resource "platform_oidc_identity_mapping" "all" {
   description   = "mapping for ${each.key}"
   provider_name = platform_oidc_configuration.default.name
 
-  claims_json = jsonencode(merge(each.value.claims, local.default_claims))
+  claims_json = jsonencode(merge(each.value.claims))
 
   token_spec = {
     username   = each.value.username
