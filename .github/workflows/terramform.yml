@@ -18,12 +18,12 @@ jobs:
         with:
           terraform_version: "1.8.2"
       
-      # - uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     role-to-assume: "provide role name "
-      #     role-session-name: 'GitHub_to_AWS_via_FederatedOIDC'
-      #     aws-region: "us-east-1"
-      #     role-duration-seconds: 3600
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::418272758417:role/jfrog-oidc"
+          role-session-name: 'sts.amazonaws.com'
+          aws-region: "eu-north-1"
+          role-duration-seconds: 3600
 
       - run: terraform init -input=false
         env:
