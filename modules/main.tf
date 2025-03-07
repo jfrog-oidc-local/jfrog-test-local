@@ -1,6 +1,6 @@
 locals {
   default_claims = {
-    enterprise = "moturi"
+    enterprise = "moturibabu"
   }
 }
 
