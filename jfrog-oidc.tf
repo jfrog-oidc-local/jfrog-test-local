@@ -9,14 +9,14 @@ module "jfrog-oidc" {
     "jfrog-oidc-local" = {
       username = "test-user"
       claims = {
-        repository_owner = "jfrog-oidc-local"
+        woekflow = "test-oidc"
       }
     },
   
       "oidc-test-jfrog" = {
           username = "ttd-svc-gha-user"
           claims = {
-           repository_owner = "oidc-test-jfrog"
+            workflow = "test-oidc"
            }
     }
 
