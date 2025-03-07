@@ -1,9 +1,9 @@
 name: pull-request
 
 on:
-  push:
-    branches:
-      develop/07_03
+  # push:
+  #   branches:
+  #     develop/07_03
   workflow_dispatch:
     inputs:
       action:
