@@ -2,12 +2,12 @@ terraform {
   required_providers {
     platform = {
       source  = "jfrog/platform"
-      version = "1.11.0"
+      version = "2.2.1"
     }
-    github = {
-      source  = "integrations/github"
-      version = "6.2.3"
-    }
+   # github = {
+    # source  = "integrations/github"
+    # version = "6.2.3"
+    # }
   }
  # backend "s3" {
    # bucket = "edvops-404188485533-us-east-1-tfstate-management-bucket"
