@@ -1,0 +1,62 @@
+name: pull-request
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        description: "Choose Terraform action to run"
+        options:
+          - plan
+          - apply
+          - destroy
+        required: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents:      read
+      id-token:      write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.8.2"
+      
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::418272758417:role/jfrog-oidc"
+          role-session-name: 'sts.amazonaws.com'
+          aws-region: "eu-north-1"
+          role-duration-seconds: 3600
+
+      - run: terraform init -input=false
+        env:
+          # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
+          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}  
+
+
+      - run: terraform plan -input=false -out .tfplan
+        if: github.event.inputs.action == 'plan'
+        env:
+          # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
+          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }} 
+                  
+      # - name: Run Terraform Apply
+      #   if: github.event.inputs.action == 'apply'
+      #   run: |
+      #     terraform apply -auto-approve
+      #   env:
+      #     TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+
+      # - name: Run Terraform Destroy
+      #   if: github.event.inputs.action == 'destroy'
+      #   run: |
+      #     terraform destroy -auto-approve
+      #   env:
+      #     TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+
+  
