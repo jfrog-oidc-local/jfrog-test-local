@@ -13,7 +13,7 @@ module "jfrog-oidc" {
       }
     },
   
-      "oidc-test-jfrog = {
+      "oidc-test-jfrog" = {
           username = "ttd-svc-gha-user"
           claims = {
            repository_owner = "oidc-test-jfrog"
