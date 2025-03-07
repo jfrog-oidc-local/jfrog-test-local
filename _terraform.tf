@@ -4,14 +4,10 @@ terraform {
       source  = "jfrog/platform"
       version = "2.2.1"
     }
-   # github = {
-    # source  = "integrations/github"
-    # version = "6.2.3"
-    # }
   }
- # backend "s3" {
-   # bucket = "edvops-404188485533-us-east-1-tfstate-management-bucket"
-   # key    = "gtio-cloud-ops-jfrog-oidc-test/jfrog-oidc-terraform.tfstate"
-   # region = "us-east-1"
- # }
+  backend "s3" {
+    bucket = "jfrog-state-store"
+    key    = "jfrog-terraform/jfrog-oidc-terraform.tfstate"
+    region = "eu-north-1"
+  }
 }
