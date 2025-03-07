@@ -45,18 +45,18 @@ jobs:
           # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
           TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }} 
                   
-      # - name: Run Terraform Apply
-      #   if: github.event.inputs.action == 'apply'
-      #   run: |
-      #     terraform apply -auto-approve
-      #   env:
-      #     TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+      - name: Run Terraform Apply
+        if: github.event.inputs.action == 'apply'
+        run: |
+          terraform apply -auto-approve
+        env:
+          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
 
-      # - name: Run Terraform Destroy
-      #   if: github.event.inputs.action == 'destroy'
-      #   run: |
-      #     terraform destroy -auto-approve
-      #   env:
-      #     TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+      - name: Run Terraform Destroy
+        if: github.event.inputs.action == 'destroy'
+        run: |
+          terraform destroy -auto-approve
+        env:
+          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
 
   
