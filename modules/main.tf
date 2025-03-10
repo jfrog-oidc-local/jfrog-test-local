@@ -5,11 +5,11 @@ locals {
 }
 
 resource "platform_oidc_configuration" "default" {
-  name          = "test-jfrogtf-oidc"
+  name          = "test-jfrogtf1-oidc"
   description   = "test terraform oidc configuration"
   issuer_url    = "https://token.actions.githubusercontent.com"
   provider_type = "GitHub"
-  audience      = "test-jfrogtf-oidc"
+  audience      = "test-jfrogtf1-oidc"
 }
 
 resource "platform_oidc_identity_mapping" "all" {
