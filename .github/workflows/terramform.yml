@@ -36,14 +36,14 @@ jobs:
       - run: terraform init -input=false
         env:
           # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
-          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}  
+          TF_VAR_jfrog_token: ${{ secrets.JFROG_XRAY_TEST }}  
 
 
       - run: terraform plan -input=false -out .tfplan
         if: github.event.inputs.action == 'plan'
         env:
           # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
-          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }} 
+          TF_VAR_jfrog_token: ${{ secrets.JFROG_XRAY_TEST }} 
                   
       - name: Run Terraform Apply
         if: github.event.inputs.action == 'apply'
