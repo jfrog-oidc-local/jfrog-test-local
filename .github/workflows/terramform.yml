@@ -36,27 +36,30 @@ jobs:
       - run: terraform init -input=false
         env:
           # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
-          TF_VAR_jfrog_token: ${{ secrets.JFROG_XRAY_TEST }}  
+          # TF_VAR_jfrog_token: ${{ secrets.JFROG_XRAY_TEST }} 
+          TF_VAR_jfrog_token: ${{ secrets.SVC_GIT_USER_TOKEN }}
 
 
       - run: terraform plan -input=false -out .tfplan
         if: github.event.inputs.action == 'plan'
         env:
           # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
-          TF_VAR_jfrog_token: ${{ secrets.JFROG_XRAY_TEST }} 
+          # TF_VAR_jfrog_token: ${{ secrets.JFROG_XRAY_TEST }} 
+         TF_VAR_jfrog_token: ${{ secrets.SVC_GIT_USER_TOKEN }}
                   
       - name: Run Terraform Apply
         if: github.event.inputs.action == 'apply'
         run: |
           terraform apply -auto-approve
         env:
-          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
-
+          # TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+         TF_VAR_jfrog_token: ${{ secrets.SVC_GIT_USER_TOKEN }}
       - name: Run Terraform Destroy
         if: github.event.inputs.action == 'destroy'
         run: |
           terraform destroy -auto-approve
         env:
-          TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+          # TF_VAR_jfrog_token: ${{ secrets.JFROG_TEST_OIDC }}
+          TF_VAR_jfrog_token: ${{ secrets.SVC_GIT_USER_TOKEN }}
 
   
